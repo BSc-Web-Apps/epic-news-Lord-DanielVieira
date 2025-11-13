@@ -6,6 +6,8 @@ import headshot from './assets/jpg/portrait-01.jpg'
 import headshot2 from './assets/jpg/portrait-02.jpg'
 import headshot3 from './assets/jpg/portrait-03.jpg'
 import { GeneralErrorBoundary } from './components/error-boundary.tsx'
+import FooterLogoCentre from './components/organisms/Footer/FooterLogoCentre.tsx'
+import HeaderWithSearch from './components/organisms/HeaderWithSearch'
 import Document from './components/shared-layout/Document.tsx'
 import { ThemeSwitch, useTheme } from './routes/resources+/theme-switch.tsx'
 import { useNonce } from './utils/nonce-provider.ts'
@@ -54,10 +56,11 @@ export default function App() {
 		<Document theme={theme} nonce={nonce} honeyProps={data?.honeyProps}>
 			<div className="flex h-screen flex-col justify-between">
 				<div className="flex-1">
+					<HeaderWithSearch />
 					<main className="grid h-full place-items-center">
 						<h1 className="text-mega">Your journey begins</h1>
 
-						<div className="flex gap-12">
+						<div className="m-12 flex flex-col gap-12 lg:flex-row">
 							<TeamMemberCard
 								name="Leonard Krasner"
 								role="Senior Designer"
@@ -81,6 +84,7 @@ export default function App() {
 				<div className="container flex justify-between pb-5">
 					<ThemeSwitch userPreference={data?.requestInfo.userPrefs.theme} />
 				</div>
+				<FooterLogoCentre />
 			</div>
 		</Document>
 	)
