@@ -59,7 +59,7 @@ export default function App() {
 					<HeaderWithSearch />
 					<main className="grid h-full place-items-center">
 						<h1 className="text-mega">Your journey begins</h1>
-
+						<h1>The Latest</h1>
 						<div className="m-12 flex flex-col gap-12 lg:flex-row">
 							<TeamMemberCard
 								name="Leonard Krasner"
