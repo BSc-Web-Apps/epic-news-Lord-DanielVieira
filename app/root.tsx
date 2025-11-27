@@ -1,19 +1,15 @@
 import { RiTwitterXFill, RiLinkedinBoxFill } from 'react-icons/ri'
-import { useLoaderData } from 'react-router'
+import { Outlet, useLoaderData } from 'react-router'
 import { type Route } from './+types/root.ts'
 import { type loader } from './__root.server.tsx'
-import heroImage from '~/assets/jpg/hero.jpg'
-import headshot from './assets/jpg/portrait-01.jpg'
-import headshot2 from './assets/jpg/portrait-02.jpg'
-import headshot3 from './assets/jpg/portrait-03.jpg'
 import { GeneralErrorBoundary } from './components/error-boundary.tsx'
 import FooterLogoCentre from './components/organisms/Footer/FooterLogoCentre.tsx'
 import HeaderWithSearch from './components/organisms/HeaderWithSearch'
-import HeroCallToAction from './components/organisms/Hero/HeroCallToAction.tsx'
 import Document from './components/shared-layout/Document.tsx'
 import { ThemeSwitch, useTheme } from './routes/resources+/theme-switch.tsx'
 import { useNonce } from './utils/nonce-provider.ts'
 import rootLinkElements from './utils/providers/rootLinkElements.ts'
+
 export const links: Route.LinksFunction = () => {
 	return rootLinkElements
 }
@@ -58,42 +54,8 @@ export default function App() {
 			<div className="flex h-screen flex-col justify-between">
 				<div className="flex-1">
 					<HeaderWithSearch />
-					<main className="grid h-full place-items-center">
-						<h1 className="text-mega">Your journey begins</h1>
-						<div className="w-full bg-blue-800 py-16">
-							<div className="w-full py-16">
-								<HeroCallToAction image={heroImage}>
-									<div className="flex flex-col gap-8 px-8">
-										<h2 className="text-h2">Climate change </h2>
 
-										<p className="text-lg">
-											Keep up to date with the latest tech news.
-										</p>
-									</div>
-								</HeroCallToAction>
-							</div>
-						</div>
-						<h1>The Latest</h1>
-						<div className="m-12 flex flex-col gap-12 lg:flex-row">
-							<TeamMemberCard
-								name="Leonard Krasner"
-								role="Senior Designer"
-								imageSrc={headshot}
-							/>
-
-							<TeamMemberCard
-								name="JOHN SNOW"
-								role="LEVEL Designer"
-								imageSrc={headshot2}
-							/>
-
-							<TeamMemberCard
-								name="JOHN PORK"
-								role="LEVEL MAKER"
-								imageSrc={headshot3}
-							/>
-						</div>
-					</main>
+					<Outlet />
 				</div>
 				<div className="container flex justify-between pb-5">
 					<ThemeSwitch userPreference={data?.requestInfo.userPrefs.theme} />

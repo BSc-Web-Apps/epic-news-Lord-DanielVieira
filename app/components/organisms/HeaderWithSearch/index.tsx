@@ -25,6 +25,32 @@ export default function HeaderWithSearch() {
 				<div className="ml-auto hidden max-w-sm flex-1 sm:block">
 					{searchBar}
 				</div>
+
+				<div className="flex flex-1 justify-end gap-8">
+					<Link
+						to="/about-us"
+						prefetch="intent"
+						className="text-muted-foreground hover:text-foreground text-sm font-semibold transition"
+					>
+						About us
+					</Link>
+
+					<Link
+						to="/contact-us"
+						prefetch="intent"
+						className="text-muted-foreground hover:text-foreground text-sm font-semibold transition"
+					>
+						contact us
+					</Link>
+
+					<Link
+						to="/news"
+						prefetch="intent"
+						className="text-muted-foreground hover:text-foreground text-sm font-semibold transition"
+					>
+						news
+					</Link>
+				</div>
 				<div className="flex items-center gap-10">
 					{user ? (
 						<UserDropdown />
