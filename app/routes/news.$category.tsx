@@ -1,3 +1,13 @@
+import { type LoaderFunctionArgs, data } from 'react-router'
+
+export async function loader({ params }: LoaderFunctionArgs) {
+	const { category } = params
+
+	console.log({ category })
+
+	return data({})
+}
+
 export default function NewsCategoryPage() {
 	return (
 		<div className="container py-16">
