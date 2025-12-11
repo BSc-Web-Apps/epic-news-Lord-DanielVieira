@@ -34,7 +34,7 @@ export default function newsPage() {
 							`${isActive ? 'text-blue-300 underline underline-offset-8' : 'text-blue-500'}`
 						}
 					>
-						Buissness
+						Business
 					</NavLink>
 				</div>
 			</div>
