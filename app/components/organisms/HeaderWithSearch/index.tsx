@@ -40,7 +40,7 @@ export default function HeaderWithSearch() {
 						prefetch="intent"
 						className="text-muted-foreground hover:text-foreground text-sm font-semibold transition"
 					>
-						contact us
+						Contact Us
 					</Link>
 
 					<Link
