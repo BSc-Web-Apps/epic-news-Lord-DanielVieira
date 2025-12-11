@@ -1,20 +1,46 @@
+import { invariant } from '@epic-web/invariant'
 import { type LoaderFunctionArgs, data, useLoaderData } from 'react-router'
+import { prisma } from '~/utils/db.server.ts'
 
 export async function loader({ params }: LoaderFunctionArgs) {
 	const { articleId } = params
 
-	console.log({ articleId })
+	invariant(typeof articleId === 'string', 'No article ID provided')
 
-	return data({ articleId })
+	// Fetch the article by ID
+	const article = await prisma.article.findUnique({
+		where: { id: articleId },
+		select: {
+			id: true,
+			title: true,
+			content: true,
+			category: { select: { name: true } },
+			owner: { select: { name: true } },
+			images: { select: { objectKey: true } },
+		},
+	})
+
+	return data({ article })
 }
-
-export default function SingleArticlePage() {
-	const { articleId } = useLoaderData<typeof loader>()
+const ArticleNotFound = () => {
 	return (
-		<div className="container py-16">
-			<h2 className="text-h2">Article Page for Article ID: {articleId}</h2>
+		<div className="container flex h-full flex-1 flex-col items-center justify-center">
+			<h2 className="text-h2 pb-8 text-center">No article found 🤔</h2>
 
-			<p>Article ID: {articleId}</p>
+			<p className="text-center text-xl">
+				Please check the article ID in your browser and try again.
+			</p>
 		</div>
+	)
+}
+export default function SingleArticlePage() {
+	const { article } = useLoaderData<typeof loader>()
+
+	return article ? (
+		<div className="container py-16">
+			<h2 className="text-h2 pb-8">{article.title}</h2>
+		</div>
+	) : (
+		<ArticleNotFound />
 	)
 }
