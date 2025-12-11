@@ -1,7 +1,6 @@
-import { type LoaderFunctionArgs, data } from 'react-router'
-import { useLoaderData } from 'react-router'
+import { type LoaderFunctionArgs, data, useLoaderData } from 'react-router'
+import ArticleCard from '#app/components/organisms/ArticleCard.tsx'
 import { prisma } from '~/utils/db.server.ts'
-
 export async function loader({ params }: LoaderFunctionArgs) {
 	const { category } = params
 
@@ -24,13 +23,11 @@ export default function NewsCategoryPage() {
 	return (
 		<div className="container py-16">
 			<h2 className="text-h2">Generic news category page</h2>
-			{allArticles.map((article) => (
-				<div key={article.id}>
-					<h3>{article.title}</h3>
-
-					<p>{article.category?.name || 'General News'}</p>
-				</div>
-			))}
+			<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+				{allArticles.map((article, index) => (
+					<ArticleCard key={article.id} article={article} index={index} />
+				))}
+			</div>
 		</div>
 	)
 }
