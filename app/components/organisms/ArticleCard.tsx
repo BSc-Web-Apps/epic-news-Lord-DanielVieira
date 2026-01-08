@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import portrait01 from '../assets/jpg/portrait-01.jpg'
+import portrait01 from '#app/assets/jpg/portrait-01.jpg'
 
 interface ArticleCardProps {
 	article: any
