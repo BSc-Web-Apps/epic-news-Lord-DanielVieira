@@ -9,7 +9,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
 			id: true,
 			title: true,
 			category: { select: { name: true } },
-			images: { select: { id: true } },
+			images: { select: { id: true, objectKey: true } },
 		},
 	})
 	console.log({ category })
@@ -25,7 +25,12 @@ export default function NewsCategoryPage() {
 			<h2 className="text-h2">Generic news category page</h2>
 			<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
 				{allArticles.map((article, index) => (
-					<ArticleCard key={article.id} article={article} index={index} />
+					<ArticleCard
+						key={article.id}
+						article={article}
+						index={index}
+						objectKey={article.images?.[0]?.objectKey}
+					/>
 				))}
 			</div>
 		</div>
