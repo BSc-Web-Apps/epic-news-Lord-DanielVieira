@@ -1,5 +1,4 @@
 import { data, NavLink, Outlet, useLoaderData } from 'react-router'
-import { loader } from '#app/__root.server.tsx'
 import { prisma } from '#app/utils/db.server.ts'
 import { cn } from '~/utils/misc.tsx'
 
