@@ -22,7 +22,6 @@ export default function HeaderWithSearch() {
 							className="flex w-16 gap-4 rounded-2xl"
 						/>
 					</Link>
-					<span className="text-foreground text-sm">Epic News</span>
 				</div>
 				<div className="ml-auto hidden max-w-sm flex-1 sm:block">
 					{searchBar}

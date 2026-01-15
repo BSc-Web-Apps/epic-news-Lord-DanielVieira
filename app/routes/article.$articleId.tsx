@@ -14,8 +14,15 @@ export async function loader({ params }: LoaderFunctionArgs) {
 			id: true,
 			title: true,
 			content: true,
-			category: { select: { name: true } },
+			category: {
+				select: {
+					id: true,
+
+					name: true,
+				},
+			},
 			owner: { select: { name: true } },
+
 			images: { select: { objectKey: true } },
 		},
 	})
@@ -26,19 +33,23 @@ const ArticleNotFound = () => {
 	return (
 		<div className="container flex h-full flex-1 flex-col items-center justify-center">
 			<h2 className="text-h2 pb-8 text-center">No article found 🤔</h2>
-
 			<p className="text-center text-xl">
 				Please check the article ID in your browser and try again.
 			</p>
 		</div>
 	)
 }
-export default function SingleArticlePage() {
+export default function ArticlePage() {
 	const { article } = useLoaderData<typeof loader>()
-
+	if (article) return ArticleNotFound
 	return article ? (
 		<div className="container py-16">
 			<h2 className="text-h2 pb-8">{article.title}</h2>
+			<div className="mb-4">
+				<p className="bg-card text-card-foreground w-fit rounded-lg px-4 py-2 text-sm">
+					{useLoaderData.article.category?.name ?? 'General News'}
+				</p>
+			</div>
 		</div>
 	) : (
 		<ArticleNotFound />

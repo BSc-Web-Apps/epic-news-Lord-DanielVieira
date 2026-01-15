@@ -49,7 +49,11 @@ export type ImageFieldset = z.infer<typeof ImageFieldsetSchema>
 export const ArticleEditorSchema = z.object({
 	id: z.string().optional(),
 	title: z.string().min(titleMinLength).max(titleMaxLength),
-
+	categoryId: z
+		.string()
+		.min(categoryMinLength)
+		.max(categoryMaxLength)
+		.optional(),
 	content: z.string().min(contentMinLength).max(contentMaxLength),
 	images: z.array(ImageFieldsetSchema).max(5).optional(),
 })
@@ -115,7 +119,20 @@ export function ArticleEditor({
 							}}
 							errors={fields.content.errors}
 						/>
+						{categories?.length ? (
+							<div className="pb-8">
+								<Label>Category</Label>
 
+								<SelectorGroup
+									name="categoryId"
+									initialValue={article?.category?.id ?? ''}
+									options={categories.map((category) => ({
+										value: category.id,
+										label: category.name,
+									}))}
+								/>
+							</div>
+						) : null}
 						<div>
 							<Label>Images</Label>
 							<ul className="flex flex-col gap-4">

@@ -16,6 +16,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
 			name: true,
 		},
 	})
+
 	const article = await prisma.article.findFirst({
 		select: {
 			id: true,

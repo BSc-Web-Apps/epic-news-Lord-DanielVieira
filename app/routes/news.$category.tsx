@@ -24,12 +24,13 @@ export default function NewsCategoryPage() {
 		<div className="container py-16">
 			<h2 className="text-h2">Generic news category page</h2>
 			<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-				{allArticles.map((article, index) => (
+				{allArticles.map((article) => (
 					<ArticleCard
 						key={article.id}
-						article={article}
-						index={index}
+						articleId={article.id}
+						category={article.category?.name}
 						objectKey={article.images?.[0]?.objectKey}
+						title={''}
 					/>
 				))}
 			</div>
