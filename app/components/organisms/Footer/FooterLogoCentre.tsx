@@ -1,10 +1,9 @@
 import { Link, NavLink } from 'react-router'
-import logo from '#app/assets/svg/icon-placeholder.svg'
 import SocialMediaButtons from '#app/components/molecules/SocialMediaButtons'
 import { type FooterProps } from './FooterBasic'
-
+import logo from '~/assets/png/epic-news-logo.png'
 const FooterLogoCentre = ({
-	companyName = 'CHANGE THIS TO YOUR COMPANY NAME!',
+	companyName = 'Epic News',
 	altText = 'Our company logo',
 }: FooterProps) => {
 	return (
