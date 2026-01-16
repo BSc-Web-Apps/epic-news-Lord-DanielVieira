@@ -1,8 +1,13 @@
 import { type LoaderFunctionArgs, data, useLoaderData } from 'react-router'
 import ArticleCard from '#app/components/organisms/ArticleCard.tsx'
 import { prisma } from '~/utils/db.server.ts'
+import { invariant } from '@epic-web/invariant'
+import { toTitleCase } from '#app/utils/stringUtils.ts'
 export async function loader({ params }: LoaderFunctionArgs) {
 	const { category } = params
+
+	invariant(typeof category === 'string', 'No category provided')
+	const categoryTitle = toTitleCase(category)
 
 	const allArticles = await prisma.article.findMany({
 		select: {
@@ -23,6 +28,7 @@ export default function NewsCategoryPage() {
 	return (
 		<div className="container py-16">
 			<h2 className="text-h2">Generic news category page</h2>
+
 			<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
 				{allArticles.map((article) => (
 					<ArticleCard
