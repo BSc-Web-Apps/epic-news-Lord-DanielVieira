@@ -112,7 +112,7 @@ export default function Index() {
 					)}
 				</div>
 
-				<h2 className="text-h2">Bus</h2>
+				<h2 className="text-h2">Bussiness</h2>
 
 				<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
 					{busisnessArticles.length > 0 ? (

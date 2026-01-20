@@ -2,7 +2,7 @@ import { useMatches, Link } from 'react-router'
 import { SearchBar } from '#app/components/search-bar.tsx'
 import { Button } from '#app/components/ui/button.tsx'
 import { UserDropdown } from '#app/components/user-dropdown.tsx'
-import { useOptionalUser } from '#app/utils/user.ts'
+import { useOptionalUser, userHasRole } from '#app/utils/user.ts'
 import logo from '~/assets/png/epic-news-logo.png'
 
 export default function HeaderWithSearch() {
@@ -10,6 +10,7 @@ export default function HeaderWithSearch() {
 	const isOnSearchPage = matches.find((m) => m.id === 'routes/users+/index')
 	const searchBar = isOnSearchPage ? null : <SearchBar status="idle" />
 	const user = useOptionalUser()
+	const isAdminUser = user ? userHasRole(user, 'admin') : false
 
 	return (
 		<header className="container py-6">
@@ -23,9 +24,15 @@ export default function HeaderWithSearch() {
 						/>
 					</Link>
 				</div>
-				<div className="ml-auto hidden max-w-sm flex-1 sm:block">
-					{searchBar}
-				</div>
+
+				{isAdminUser && (
+					<Link
+						to="/admin-review"
+						className="text-foreground rounded-lg bg-green-900 px-4 py-2 text-sm font-semibold transition hover:bg-green-800"
+					>
+						Admin Review
+					</Link>
+				)}
 
 				<div className="flex flex-1 justify-end gap-8">
 					<Link
@@ -62,6 +69,9 @@ export default function HeaderWithSearch() {
 					)}
 				</div>
 				<div className="block w-full sm:hidden">{searchBar}</div>
+				<div className="ml-auto hidden max-w-sm flex-1 sm:block">
+					{searchBar}
+				</div>
 			</nav>
 		</header>
 	)
