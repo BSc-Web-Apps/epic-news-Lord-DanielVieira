@@ -16,7 +16,7 @@ export default function HeaderWithSearch() {
 		<header className="container py-6">
 			<nav className="flex flex-wrap items-center justify-between gap-4 sm:flex-nowrap md:gap-8">
 				<div>
-					<Link to="http://localhost:3001/">
+					<Link to="http://localhost:3000/">
 						<img
 							src={logo}
 							alt="Epic News Logo"
@@ -48,7 +48,7 @@ export default function HeaderWithSearch() {
 						prefetch="intent"
 						className="text-muted-foreground hover:text-foreground text-sm font-semibold transition"
 					>
-						Contact Us
+						Contact us
 					</Link>
 
 					<Link
