@@ -16,7 +16,7 @@ export default function HeaderWithSearch() {
 		<header className="container py-6">
 			<nav className="flex flex-wrap items-center justify-between gap-4 sm:flex-nowrap md:gap-8">
 				<div>
-					<Link to="http://localhost:3000/">
+					<Link to="/">
 						<img
 							src={logo}
 							alt="Epic News Logo"
@@ -27,7 +27,7 @@ export default function HeaderWithSearch() {
 
 				{isAdminUser && (
 					<Link
-						to="/admin-reviews"
+						to="/admin-review"
 						className="text-foreground rounded-lg bg-green-900 px-4 py-2 text-sm font-semibold transition hover:bg-green-800"
 					>
 						Admin Review
