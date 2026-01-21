@@ -41,13 +41,14 @@ const ArticleNotFound = () => {
 }
 export default function ArticlePage() {
 	const { article } = useLoaderData<typeof loader>()
-	if (article) return ArticleNotFound
+
 	return article ? (
 		<div className="container py-16">
 			<h2 className="text-h2 pb-8">{article.title}</h2>
 			<div className="mb-4">
 				<p className="bg-card text-card-foreground w-fit rounded-lg px-4 py-2 text-sm">
-					{useLoaderData.article.category?.name ?? 'General News'}
+					{article.category?.name ?? 'General News'}
+					<article className="content">{article.content}</article>
 				</p>
 			</div>
 		</div>

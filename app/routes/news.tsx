@@ -1,5 +1,4 @@
 import { NavLink, Outlet } from 'react-router'
-import { prisma } from '~/utils/db.server.ts'
 
 export default function newsPage() {
 	return (
